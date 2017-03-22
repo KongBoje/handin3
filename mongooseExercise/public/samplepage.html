@@ -1,0 +1,39 @@
+<!doctype html>
+<html ng-app="DemoApp" ng-controller="sampleController as sc">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+    <script src="/scripts/sampleangular.js"></script>
+</head>
+
+<body>
+    <div>Hello world</div>
+
+    <div>
+        <input type="text" id="jokeText" placeholder="Joke string"><br>
+        <input type="text" id="jokeCategories" placeholder="Joke categories (comma seperated)"><br>
+        <input type="text" id="jokeAuthor" placeholder="Joke author"><br>
+        <input type="text" id="jokeLink" placeholder="Joke link">
+    </div>
+    <input type="button" value="Create new" ng-click="sc.postJoke()">
+
+    <hr>
+    <table>
+        <tr>
+            <th ng-repeat="(key, value) in sc.allJokes[0]">{{key}}</th>
+        </tr>
+        <tr ng-repeat="x in sc.allJokes">
+            <td ng-repeat="(key, value) in x">
+                <div>{{value}}</div>
+            </td>
+            <td><button ng-click="sc.editClick(x)">Edit</button></td>
+            <td><button ng-click="sc.delete(x._id)">Delete</button></td>
+        </tr>
+    </table>
+    <hr>
+    <textarea id="objText" rows="8" cols="60"></textarea>
+    <br>
+    <button ng-click="sc.doPut()">Send PUT request</button>
+</body>
+
+</html>
